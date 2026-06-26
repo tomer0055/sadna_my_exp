@@ -33,6 +33,9 @@ build/
 .vscode/
 .claude/
 
+### Node ###
+node_modules/
+
 ### macOS ###
 .DS_Store
 ._*
