@@ -34,10 +34,10 @@ test.describe('Checkout Page (Real API)', () => {
     await page.goto('/checkout');
 
     await expect(page.getByText('Rock Night')).toBeVisible({ timeout: 15000 });
-    // Bob has 3 seats (0_1_1, 0_1_2, 0_1_3) from seed data
     await expect(page.getByRole('heading', { name: 'Selected Tickets (3)' })).toBeVisible();
   });
 
+  // This test actually completes the order — must run last
   test('GivenValidPaymentFields_WhenPayClicked_ThenProcessesPayment', async ({ page }) => {
     await loginAsBob(page);
     await page.goto('/checkout');
@@ -52,8 +52,7 @@ test.describe('Checkout Page (Real API)', () => {
 
     await page.getByText(/Authorize & Pay/).click();
 
-    // With dev profile (StubPaymentGateway), payment should succeed
-    // or show a payment-related response (not a validation error)
+    // With dev profile (StubPaymentGateway), payment should succeed or show response
     await expect(
       page.getByText(/BARCODE|Payment|Success|Error|declined/i).first()
     ).toBeVisible({ timeout: 15000 });
