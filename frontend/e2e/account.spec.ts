@@ -11,15 +11,15 @@ test.describe('Account Settings Page (Real API)', () => {
     await loginAsAlice(page);
     await page.goto('/account');
 
-    await expect(page.getByDisplayValue('Alice Smith')).toBeVisible({ timeout: 15000 });
-    await expect(page.getByDisplayValue('alice@example.com')).toBeVisible();
+    await expect(page.locator('input[value="Alice Smith"]')).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('input[value="alice@example.com"]')).toBeVisible();
   });
 
   test('GivenMemberUser_WhenEditClicked_ThenShowsEditableFields', async ({ page }) => {
     await loginAsAlice(page);
     await page.goto('/account');
 
-    await expect(page.getByDisplayValue('Alice Smith')).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('input[value="Alice Smith"]')).toBeVisible({ timeout: 15000 });
 
     const editBtn = page.getByRole('button', { name: /edit/i }).first();
     if (await editBtn.isVisible()) {

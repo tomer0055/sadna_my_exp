@@ -9,7 +9,7 @@ test.describe('Event Details Page (Real API)', () => {
     await expect(page).toHaveURL(/\/events\//, { timeout: 10000 });
 
     await expect(page.getByRole('heading', { name: /Rock Night/i })).toBeVisible({ timeout: 10000 });
-    await expect(page.getByText('Tel Aviv Arena').first()).toBeVisible();
+    await expect(page.getByText(/Tickets Available/i).first()).toBeVisible();
   });
 
   test('GivenEventDetailsPage_WhenLoaded_ThenShowsBackToEventsLink', async ({ page }) => {

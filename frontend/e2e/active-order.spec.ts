@@ -14,14 +14,14 @@ test.describe('Active Order Page (Real API)', () => {
     await page.goto('/orders/active');
 
     // Bob has an active order for Rock Night with 3 seats
-    await expect(page.getByText('Rock Night')).toBeVisible({ timeout: 15000 });
+    await expect(page.getByText('Rock Night').first()).toBeVisible({ timeout: 15000 });
   });
 
   test('GivenMemberWithActiveOrder_WhenPageLoaded_ThenShowsCheckoutOption', async ({ page }) => {
     await loginAsBob(page);
     await page.goto('/orders/active');
 
-    await expect(page.getByText('Rock Night')).toBeVisible({ timeout: 15000 });
+    await expect(page.getByText('Rock Night').first()).toBeVisible({ timeout: 15000 });
     await expect(page.getByText(/Checkout|Proceed/i).first()).toBeVisible({ timeout: 10000 });
   });
 

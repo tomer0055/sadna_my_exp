@@ -19,8 +19,8 @@ test.describe('Order History Page (Real API)', () => {
     await loginAsBob(page);
     await page.goto('/orders/history');
 
-    await page.waitForLoadState('networkidle');
-    // Bob's history orders should eventually load
-    await expect(page.locator('body')).not.toHaveText('undefined');
+    // Bob has 2 history orders — verify they render
+    await expect(page.getByText('Rock Night').first()).toBeVisible({ timeout: 15000 });
+    await expect(page.getByText('Comedy Night').first()).toBeVisible({ timeout: 15000 });
   });
 });
